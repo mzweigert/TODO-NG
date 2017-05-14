@@ -7,20 +7,28 @@ import {TodoService} from "../../services/todo.service";
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css'],
-  providers: [TodoService]
+  styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-
+  private _title = 'Welcome to TODO list app!';
+  private _btnAddTitle = 'add TODO';
   private _todoList: TODO[];
   private _headers: string[];
 
-  constructor(private todoService: TodoService) {
+  constructor(@Inject('ITodoService') private todoService: ITodoService) {
   }
 
   ngOnInit() {
     this._todoList = this.todoService.getAllTodoList();
     this._headers = TodoTableHeader.toStringArray();
+  }
+
+  get title():string{
+      return this._title;
+  }
+
+  get btnAddTitle():string{
+      return this._btnAddTitle;
   }
 
   get headers() : string[] {
