@@ -6,8 +6,7 @@ export class TODO {
     private _description: string;
     private _done: boolean;
 
-    constructor(id:number, title:string, createDate:string, description:string, done:boolean) {
-        this._id = id;
+    constructor(title:string, createDate:string, description:string, done:boolean) {
         this._title = title;
         this._createDate = createDate;
         this._description = description;

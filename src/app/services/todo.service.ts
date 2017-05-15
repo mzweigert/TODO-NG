@@ -18,7 +18,7 @@ export class TodoService implements ITodoService {
   }
 
   addTodo (todo: TODO) : TODO {
-    todo.id = this.todos.length ? this.todos[this.todos.length -1].id : 1;
+    todo.id = this.todos.length ? this.todos[this.todos.length -1].id + 1 : 1;
     this.todos.push(todo);
     return todo
   };

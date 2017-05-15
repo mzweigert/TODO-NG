@@ -1,3 +1,36 @@
-<p>
-  add-todo works!
-</p>
+<div class="add-form">
+  <h2>Add Todo!</h2>
+  <form [formGroup]="todoForm" autocomplete="off" novalidate (ngSubmit)="submitTodo(todoForm.value)" >
+    <div class="form-group row">
+      <label for="title" class="col-xs-form-label">Title</label>
+      <div class="col-xs-12">
+        <input class="form-control" type="text" placeholder="Title" id="title"
+               formControlName="title">
+        <span *ngIf="todoForm.controls.title.errors?.minlength">Title to short!</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="createDate" class="col-xs-form-label">Create date</label>
+      <div class="col-xs-12">
+        <input class="form-control" type="date" placeholder="Create date" id="createDate"
+               formControlName="createDate">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="description" class="col-xs-form-label">Description</label>
+      <div class="col-xs-12">
+      <textarea class="form-control" placeholder="Create date" id="description"
+                formControlName="description" rows="6"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <button type="submit" class="btn btn-success btn-lg" [disabled]="!todoForm.valid">{{addTodoBtn}}</button>
+      </div>
+      <div class="col-xs-6">
+        <button type="button" class="btn btn-default btn-lg" routerLink="/todo-list">{{backToHome}}</button>
+      </div>
+    </div>
+
+  </form>
+</div>

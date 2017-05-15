@@ -1,0 +1,8 @@
+.add-form .row {
+  width: 70%;
+  margin: 25px auto 0;
+}
+
+.add-form textarea {
+  resize: none;
+}
