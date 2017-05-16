@@ -17,6 +17,14 @@ export class TodoService implements ITodoService {
     return this.todos;
   }
 
+  getListSize() : number {
+    return this.todos.length;
+  }
+
+  getTodosByOffsetAndLimit(_offset, _limit) : TODO[]{
+    return this.todos.slice(_offset, _limit);
+  }
+
   addTodo (todo: TODO) : TODO {
     todo.id = this.todos.length ? this.todos[this.todos.length -1].id + 1 : 1;
     this.todos.push(todo);

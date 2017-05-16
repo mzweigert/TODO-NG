@@ -1,7 +1,7 @@
 export const TodoTableHeader = {
     id: "Id",
     title: "Title",
-    createDate: "Create date",
+    done: "Done?",
     details: "Details",
     remove: "Remove",
     edit: "Edit",

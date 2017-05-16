@@ -1,4 +1,6 @@
 table {
   width: 80%;
   margin: 5% auto 0;
+  height:250px; /* or whatever width you want. */
+  max-height:250px;
 }
