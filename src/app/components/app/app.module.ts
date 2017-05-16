@@ -10,6 +10,8 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
 import {ITodoService} from "../../interfaces/todo-service-interface";
 import {TodoService} from "../../services/todo.service";
 import { AddTodoComponent } from '../add-todo/add-todo.component';
+import { DetailsTodoComponent } from '../details-todo/details-todo.component';
+
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 import { AppRoutes } from "../../consts/app-routes";
 
@@ -18,7 +20,8 @@ import { AppRoutes } from "../../consts/app-routes";
     AppComponent,
     TodoListComponent,
     AddTodoComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DetailsTodoComponent
   ],
   imports: [
     AppRoutes,

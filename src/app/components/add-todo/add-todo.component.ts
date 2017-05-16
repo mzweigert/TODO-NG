@@ -5,6 +5,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {ITodoService} from "../../interfaces/todo-service-interface";
 import {TODO} from "../../models/todo";
 import {TodoListComponent} from "../todo-list/todo-list.component";
+import {HTMLHeaders} from "../../consts/html-headers";
 
 @Component({
   selector: 'app-add-todo',
@@ -13,13 +14,12 @@ import {TodoListComponent} from "../todo-list/todo-list.component";
 })
 export class AddTodoComponent {
 
-  todoForm: FormGroup;
-  addTodoBtn: string = 'Add Todo';
-  backToHome: string = 'Home';
+  private _todoForm: FormGroup;
+  private _html :HTMLHeaders = HTMLHeaders.getHeaders('Add Todo');
 
   constructor(@Inject('ITodoService') private todoService: ITodoService, private _fb: FormBuilder,
               private _router: Router) {
-    this.todoForm = this._fb.group({
+    this._todoForm = this._fb.group({
       'title' : this.initialFormControl,
       'createDate' : this.initialFormControl,
       'description' : this.initialFormControl
@@ -33,4 +33,11 @@ export class AddTodoComponent {
     this._router.navigate(['todo-list']);
   }
 
+    get todoForm():FormGroup {
+      return this._todoForm;
+    }
+
+  get html():HTMLHeaders{
+      return this._html;
+      }
 }

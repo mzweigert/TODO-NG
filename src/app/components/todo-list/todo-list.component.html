@@ -1,8 +1,8 @@
 
 <h1>
-  {{title}}
+  {{html.title}}
 </h1>
-<button type="button" class="btn btn-success btn-lg" routerLink="/add">{{btnAddTitle}}</button>
+<button type="button" class="btn btn-success btn-lg" [routerLink]="['/add']">{{html.btnAddTitle}}</button>
 <table class="table table-bordered">
   <thead>
   <tr>
@@ -13,10 +13,10 @@
     <tr *ngFor="let todo of todoList">
       <td>{{todo.id}}</td>
       <td>{{todo.title}}</td>
-      <td>{{todo.done}}</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td>{{todo.done? 'Yes' : 'No'}}</td>
+      <td> <a [routerLink]="['/details', todo.id]">Details</a> </td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

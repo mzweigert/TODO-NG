@@ -3,6 +3,7 @@ import {ITodoService} from "../../interfaces/todo-service-interface";
 import {TodoTableHeader} from "../../consts/todo-table-header";
 import {TODO} from "../../models/todo";
 import {TodoService} from "../../services/todo.service";
+import {HTMLHeaders} from "../../consts/html-headers";
 
 @Component({
   selector: 'app-todo-list',
@@ -10,8 +11,7 @@ import {TodoService} from "../../services/todo.service";
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent {
-  private _title = 'Welcome to TODO list app!';
-  private _btnAddTitle = 'add TODO';
+  private _html :HTMLHeaders = HTMLHeaders.getHeaders('Welcome to TODO list app!');
   private _todoList: TODO[];
   private _headers: string[];
 
@@ -20,12 +20,8 @@ export class TodoListComponent {
     this._headers = TodoTableHeader.toStringArray();
   }
 
-  get title():string{
-      return this._title;
-  }
-
-  get btnAddTitle():string{
-      return this._btnAddTitle;
+  get html():HTMLHeaders{
+      return this._html;
   }
 
   get headers() : string[] {
