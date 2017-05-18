@@ -11,17 +11,21 @@ import {ITodoService} from "../../interfaces/todo-service-interface";
 import {TodoService} from "../../services/todo.service";
 import { AddTodoComponent } from '../add-todo/add-todo.component';
 import { DetailsTodoComponent } from '../details-todo/details-todo.component';
-
+import { EditTodoComponent } from '../edit-todo/edit-todo.component';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
+
+
 import { AppRoutes } from "../../consts/app-routes";
+import {ConflictResolverService} from "../../services/conflict-resolver.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     AddTodoComponent,
-    PageNotFoundComponent,
-    DetailsTodoComponent
+    DetailsTodoComponent,
+    EditTodoComponent,
+    PageNotFoundComponent
   ],
   imports: [
     AppRoutes,
@@ -31,7 +35,8 @@ import { AppRoutes } from "../../consts/app-routes";
     HttpModule,
     AlertModule.forRoot()
   ],
-  providers: [{provide: 'ITodoService', useClass: TodoService}],
+  providers: [{ provide: 'ITodoService', useClass: TodoService },
+              { provide: 'IConflictResolver', useClass: ConflictResolverService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

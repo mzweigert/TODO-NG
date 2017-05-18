@@ -6,3 +6,7 @@
 .todo-form textarea {
   resize: none;
 }
+
+.checkbox {
+  font-weight: bold;
+}

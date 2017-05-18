@@ -13,10 +13,10 @@
     <tr *ngFor="let todo of todoList">
       <td>{{todo.id}}</td>
       <td>{{todo.title}}</td>
-      <td>{{todo.done? 'Yes' : 'No'}}</td>
-      <td> <a [routerLink]="['/details', todo.id]">Details</a> </td>
+      <td>{{todo.complete? 'Yes' : 'No'}}</td>
+      <td> <a [routerLink]="['/details', todo.id]">{{html.details}}</a> </td>
       <td></td>
-      <td></td>
+      <td> <a [routerLink]="['/edit', todo.id]">{{html.edit}}</a> </td>
     </tr>
   </tbody>
 </table>

@@ -2,15 +2,16 @@ export class TODO {
 
     private _id: number;
     private _title: string;
-    private _createDate: string;
+    private _createDate: Date;
     private _description: string;
-    private _done: boolean;
+    private _complete: boolean;
 
-    constructor(title:string, createDate:string, description:string, done:boolean) {
+    constructor(title:string, createDate:Date, description:string, complete:boolean, id?:number) {
         this._title = title;
         this._createDate = createDate;
         this._description = description;
-        this._done = done;
+        this._complete = complete;
+        this._id = id;
     }
 
     get id():number{
@@ -29,11 +30,11 @@ export class TODO {
         this._title=value;
     }
 
-    get createDate():string{
+    get createDate():Date{
         return this._createDate;
     }
 
-    set createDate(value:string){
+    set createDate(value:Date){
         this._createDate=value;
     }
 
@@ -45,11 +46,11 @@ export class TODO {
         this._description=value;
     }
 
-    get done():boolean{
-        return this._done;
+    get complete():boolean{
+        return this._complete;
     }
 
-    set done(value:boolean){
-        this._done=value;
+    set complete(value:boolean){
+        this._complete=value;
     }
 }
