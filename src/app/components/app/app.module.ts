@@ -12,6 +12,7 @@ import {TodoService} from "../../services/todo.service";
 import { AddTodoComponent } from '../add-todo/add-todo.component';
 import { DetailsTodoComponent } from '../details-todo/details-todo.component';
 import { EditTodoComponent } from '../edit-todo/edit-todo.component';
+import { RemoveTodoComponent } from '../remove-todo/remove-todo.component';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
 
@@ -25,6 +26,7 @@ import {ConflictResolverService} from "../../services/conflict-resolver.service"
     AddTodoComponent,
     DetailsTodoComponent,
     EditTodoComponent,
+    RemoveTodoComponent,
     PageNotFoundComponent
   ],
   imports: [

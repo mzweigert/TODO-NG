@@ -1,0 +1,15 @@
+table, .row {
+  margin: 5% auto 0;
+}
+table {
+  width: 70%;
+}
+.row {
+  width: 75%;
+}
+.row button{
+  width: 100%;
+}
+tbody tr td:first-child {
+  font-weight: bold;
+}

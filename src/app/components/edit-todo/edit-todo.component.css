@@ -10,3 +10,7 @@
 .checkbox {
   font-weight: bold;
 }
+
+.row button{
+  width: 100%;
+}

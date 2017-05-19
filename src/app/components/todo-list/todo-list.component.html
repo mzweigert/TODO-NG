@@ -3,23 +3,25 @@
   {{html.title}}
 </h1>
 <button type="button" class="btn btn-success btn-lg" [routerLink]="['/add']">{{html.btnAddTitle}}</button>
-<table class="table table-bordered">
-  <thead>
-  <tr>
-    <th *ngFor="let header of headers">{{header}}</th>
-  </tr>
-  </thead>
-  <tbody>
+<div class="static-height">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th *ngFor="let header of headers">{{header}}</th>
+    </tr>
+    </thead>
+    <tbody>
     <tr *ngFor="let todo of todoList">
       <td>{{todo.id}}</td>
       <td>{{todo.title}}</td>
       <td>{{todo.complete? 'Yes' : 'No'}}</td>
       <td> <a [routerLink]="['/details', todo.id]">{{html.details}}</a> </td>
-      <td></td>
+      <td> <a [routerLink]="['/remove', todo.id]">{{html.remove}}</a> </td>
       <td> <a [routerLink]="['/edit', todo.id]">{{html.edit}}</a> </td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 <div class="pagination">
   <div class="btn-group pull-right">
     <button type="button" class="btn btn-primary" [disabled]="(currentPage == 1 || pagesSize == 0)" (click)="prevPage()" >Prev</button>

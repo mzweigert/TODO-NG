@@ -1,0 +1,23 @@
+<h1>
+  {{html.title}}
+</h1>
+<h2>
+  Are you sure?
+</h2>
+<table class="table table-bordered">
+  <tbody>
+  <tr *ngFor="let todo of todoDetails">
+    <td class="text">{{todo.key}}</td>
+    <td>{{todo.value}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col-xs-6">
+    <button type="button" class="btn btn-default btn-lg" [routerLink]="['/todo-list']">{{html.home}}</button>
+  </div>
+  <div class="col-xs-6">
+    <button type="button" class="btn btn-danger btn-lg" (click)="removeTodo()">{{html.remove}}</button>
+  </div>
+</div>
