@@ -4,5 +4,6 @@ export interface IConflictResolver {
   toYYYYMMDD(_date: Date) : void;
   keyToCapital(_key: string) : string;
   booleanToWord(bool: boolean) : string;
+  wordToBooleanString(word:any) : string;
   checkIfBooleanOrDate(value: any) : string
 }

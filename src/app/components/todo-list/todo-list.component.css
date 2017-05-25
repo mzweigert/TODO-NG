@@ -9,4 +9,27 @@ table {
 
 thead th {
   text-align: center;
+  width: 70px;
+  max-width: 70px;
+
+}
+
+.funnel-btn {
+  background: transparent url(../../../assets/funnel.png) no-repeat 0 50%;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  float: right;
+}
+
+.funnel-text {
+  width: 70%;
+  height: 20px;
+  float: left;
+  z-index: 100;
+}
+
+.funnel-header {
+  position: absolute;
+  z-index: 0;
 }

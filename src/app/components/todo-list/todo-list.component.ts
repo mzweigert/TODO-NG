@@ -13,40 +13,69 @@ import {HTMLHeaders} from "../../consts/html-headers";
 export class TodoListComponent implements OnInit {
   private _html :HTMLHeaders = HTMLHeaders.getHeaders('Welcome to TODO list app!');
   private _todoList: TODO[];
+  private _paginatedTL: TODO[];
   private  _headers: string[];
   private _pagesSizeArray: number[];
   private _todosPerPage: number = 5;
   private _currentPage: number = 1;
   private _pagesSize: number;
+  private _hiddenInputs: Map<string, any> = new Map();
 
 
   constructor(@Inject('ITodoService') private todoService: ITodoService) {
   }
 
   ngOnInit(){
-    this._todoList = this.todoService.getAllTodoList();
+    this._todoList = this.todoService.getTodos();
+    this._paginatedTL = this._todoList;
     this._headers = TodoTableHeader.toStringArray();
-    this._pagesSize =  Math.ceil(this.todoService.getListSize() / this._todosPerPage);
-    this._pagesSizeArray = Array.apply(null, {length: this._pagesSize}).map((e, i) => i+1);
-    this._currentPage = 1;
-    this.refreshTodos();
+    this.initPages();
+    this.paginate();
   }
 
-  refreshTodos() : void {
-    this._todoList = this.todoService.getTodosByOffsetAndLimit((this._currentPage - 1) * this._todosPerPage, this._todosPerPage * this._currentPage);
+  initPages() : void {
+    this._pagesSize =  Math.ceil(this._todoList.length / this._todosPerPage);
+    this._pagesSizeArray = Array.apply(null, {length: this._pagesSize}).map((e, i) => i+1);
+    this._currentPage = 1;
+  }
+
+  getOffset() : number {
+    return (this._currentPage - 1) * this._todosPerPage;
+  }
+  getLimit() : number {
+    return this._todosPerPage * this._currentPage;
+  }
+  paginate() : void {
+    this._paginatedTL = this._todoList.slice(this.getOffset(), this.getLimit());
   }
   setPage(index : any){
     this._currentPage = index;
-    this.refreshTodos();
+    this.paginate();
   }
   prevPage(){
     this._currentPage--;
-    this.refreshTodos();
+    this.paginate();
   }
 
   nextPage(){
     this._currentPage++;
-    this.refreshTodos();
+    this.paginate();
+  }
+
+  showOrHideInput(header : string){
+    if(this._hiddenInputs.has(header)){
+      this.findByValue(header, '');
+      this._hiddenInputs.delete(header);
+    } else {
+      this._hiddenInputs.set(header, null);
+    }
+  }
+
+  findByValue(header: string, value: string){
+    this._hiddenInputs.set(header, value !== ''? value : null);
+    this._todoList = this.todoService.filterByHeadersAndValues(this._hiddenInputs);
+    this.initPages();
+    this.paginate();
   }
 
   get html():HTMLHeaders{
@@ -57,8 +86,8 @@ export class TodoListComponent implements OnInit {
     return this._headers;
   }
 
-  get todoList():TODO[]{
-      return this._todoList;
+  get paginatedTL():TODO[]{
+      return this._paginatedTL;
   }
 
 
@@ -76,5 +105,10 @@ export class TodoListComponent implements OnInit {
 
   get pagesSize():number{
       return this._pagesSize;
+      }
+
+
+  get hiddenInputs(): Map<string, any>{
+      return this._hiddenInputs;
       }
 }

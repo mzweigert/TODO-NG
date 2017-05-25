@@ -1,19 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 import { TODO } from '../models/todo';
 import { TODOS_MOCK } from '../mocks/todos';
 import {ITodoService} from "../interfaces/todo-service-interface";
+import {IConflictResolver} from "../interfaces/conflict-resolver-interface";
 
 @Injectable()
 export class TodoService implements ITodoService {
 
-  private todos: TODO[];
+  private todos: TODO[] = [];
 
-  constructor() {
+  constructor(@Inject('IConflictResolver') private _conflictResolver : IConflictResolver) {
     this.todos = TODOS_MOCK;
   }
 
-  getAllTodoList () : TODO[] {
+  getTodos () : TODO[] {
     return this.todos;
   }
 
@@ -21,10 +22,31 @@ export class TodoService implements ITodoService {
     return this.todos.length;
   }
 
-  getTodosByOffsetAndLimit(_offset, _limit) : TODO[]{
+  resetTodos() :  TODO[] {
+    this.todos = TODOS_MOCK;
+    return this.todos;
+  }
+  filterByOffsetAndLimit(_offset, _limit) : TODO[] {
     return this.todos.slice(_offset, _limit);
   }
 
+  filterByHeadersAndValues(map: Map<string, any>) :  TODO[]{
+    let tempTodoList = this.todos;
+    map.forEach((val, key) => {
+      if(val){
+
+        tempTodoList = tempTodoList.filter((e) => {
+          let todoVal = e[key.toLowerCase()];
+          return todoVal
+            .toString()
+            .startsWith(typeof todoVal === 'boolean'?
+              this._conflictResolver.wordToBooleanString(val)
+              : val);
+        });
+      }
+    });
+    return tempTodoList;
+  }
   addTodo (todo: TODO) : TODO {
     todo.id = this.todos.length ? this.todos[this.todos.length -1].id + 1 : 1;
     this.todos.push(todo);

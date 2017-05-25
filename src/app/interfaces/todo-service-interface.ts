@@ -1,9 +1,12 @@
 import {TODO} from "../models/todo";
+import {TodoService} from "../services/todo.service";
 
 export interface ITodoService {
-  getAllTodoList() : TODO[];
+  getTodos() : TODO[];
   getListSize() : number;
-  getTodosByOffsetAndLimit(_offset, _limit) : TODO[];
+  resetTodos() :  TODO[];
+  filterByOffsetAndLimit(_offset, _limit) : TODO[];
+  filterByHeadersAndValues(map: Map<string, any>) : TODO[];
   addTodo(todo: TODO): TODO
   removeTodo(id: number): boolean;
   getById(id: number): TODO;

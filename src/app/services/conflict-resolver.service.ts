@@ -1,5 +1,4 @@
 import { Injectable, Inject } from '@angular/core';
-import {ITodoService} from "../interfaces/todo-service-interface";
 import {Router} from "@angular/router";
 import {TODO} from "../models/todo";
 import {IConflictResolver} from "../interfaces/conflict-resolver-interface";
@@ -7,7 +6,7 @@ import {IConflictResolver} from "../interfaces/conflict-resolver-interface";
 @Injectable()
 export class ConflictResolverService implements IConflictResolver {
 
-  constructor(@Inject('ITodoService') private _todoService: ITodoService) { }
+  constructor() { }
 
   keyToCapital(_key:string):string {
     return  _key.charAt(1).toUpperCase() + _key.substr(2);
@@ -15,6 +14,15 @@ export class ConflictResolverService implements IConflictResolver {
 
   booleanToWord(bool:boolean):string {
     return bool? 'Yes' : 'No';
+  }
+
+  wordToBooleanString(word:any) : string {
+    if('Yes'.startsWith(word)){
+      return 'true';
+    } else if('No'.startsWith(word)){
+      return 'false';
+    }
+    return null;
   }
 
   checkIfBooleanOrDate(value:any):string {

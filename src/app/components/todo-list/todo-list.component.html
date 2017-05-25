@@ -7,11 +7,20 @@
   <table class="table table-bordered">
     <thead>
     <tr>
-      <th *ngFor="let header of headers">{{header}}</th>
+      <th *ngFor="let header of headers">
+        <div  *ngIf="(header === 'Id' || header === 'Title' || header === 'Complete' )" class="funnel">
+          <div class="funnel-header" *ngIf="!hiddenInputs.has(header)">
+            {{header}}
+          </div>
+          <input type="button" class="funnel-btn" (click)="showOrHideInput(header)">
+          <input type="text" class="funnel-text" *ngIf="hiddenInputs.has(header)" (keyup)="findByValue(header, $event.target.value)">
+        </div>
+
+      </th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let todo of todoList">
+    <tr *ngFor="let todo of paginatedTL">
       <td>{{todo.id}}</td>
       <td>{{todo.title}}</td>
       <td>{{todo.complete? 'Yes' : 'No'}}</td>
@@ -22,10 +31,13 @@
     </tbody>
   </table>
 </div>
-<div class="pagination">
+<div class="pagination" *ngIf="pagesSize != 0">
   <div class="btn-group pull-right">
-    <button type="button" class="btn btn-primary" [disabled]="(currentPage == 1 || pagesSize == 0)" (click)="prevPage()" >Prev</button>
+    <button type="button" class="btn btn-primary" [disabled]="(currentPage == 1)" (click)="prevPage()" >Prev</button>
     <button *ngFor="let page of pagesSizeArray" [disabled]="(currentPage == page)" (click)="setPage(page)" type="button" class="btn btn-primary">{{page}}</button>
-    <button type="button" class="btn btn-primary" [disabled]="(currentPage == pagesSize || pagesSize == 0)"  (click)="nextPage()" >Next</button>
+    <button type="button" class="btn btn-primary" [disabled]="(currentPage == pagesSize)"  (click)="nextPage()" >Next</button>
   </div>
 </div>
+<p *ngIf="pagesSize == 0">
+  No elements in page :(
+</p>
