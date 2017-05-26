@@ -3,12 +3,11 @@ table {
   margin: 5% auto 0;
 }
 .static-height {
-  height:250px; /* or whatever width you want. */
+  height:250px;
   max-height:250px;
 }
 
 thead th {
-  text-align: center;
   width: 70px;
   max-width: 70px;
 
@@ -25,11 +24,10 @@ thead th {
 .funnel-text {
   width: 70%;
   height: 20px;
-  float: left;
-  z-index: 100;
 }
 
 .funnel-header {
-  position: absolute;
-  z-index: 0;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
