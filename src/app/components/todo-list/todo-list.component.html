@@ -31,13 +31,28 @@
     </tbody>
   </table>
 </div>
-<div class="pagination" *ngIf="pagesSize != 0">
+<p *ngIf="pagesSize == 0">
+  No elements on the page :(
+</p>
+<div class="pagination" *ngIf="pagesSize <= 10 && pagesSize > 0">
   <div class="btn-group pull-right">
     <button type="button" class="btn btn-primary" [disabled]="(currentPage == 1)" (click)="prevPage()" >Prev</button>
     <button *ngFor="let page of pagesSizeArray" [disabled]="(currentPage == page)" (click)="setPage(page)" type="button" class="btn btn-primary">{{page}}</button>
     <button type="button" class="btn btn-primary" [disabled]="(currentPage == pagesSize)"  (click)="nextPage()" >Next</button>
   </div>
 </div>
-<p *ngIf="pagesSize == 0">
-  No elements on the page :(
-</p>
+<div class="pagination" *ngIf="pagesSize > 10">
+  <div class="btn-group pull-right">
+    <button type="button" class="btn btn-primary" [disabled]="(currentPage == 1)" (click)="prevPage()" >Prev</button>
+    <button *ngFor="let page of pagesSizeArray.slice(0, 4)" [disabled]="(currentPage == page)" (click)="setPage(page)" type="button" class="btn btn-primary">{{page}}</button>
+    <div class="search-page" *ngIf="showSetPageInput">
+      <input type="number" [min]="1" [max]="pagesSize" class="form-control" placeholder="Page..."
+             #pageInput (keyup)="setPage(pageInput.value)" (change)="setPage(pageInput.value)">
+      <button class="btn btn-danger" type="button" (click)="showSetPageInput = !showSetPageInput">x</button>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="showSetPageInput = !showSetPageInput" *ngIf="!showSetPageInput" #show_input >...</button>
+    <button *ngFor="let page of pagesSizeArray.slice( pagesSizeArray.length - 4, pagesSizeArray.length)" [disabled]="(currentPage == page)" (click)="setPage(page)" type="button" class="btn btn-primary">{{page}}</button>
+    <button type="button" class="btn btn-primary" [disabled]="(currentPage == pagesSize)"  (click)="nextPage()" >Next</button>
+  </div>
+</div>
+

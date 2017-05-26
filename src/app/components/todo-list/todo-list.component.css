@@ -13,6 +13,20 @@ thead th {
 
 }
 
+.pagination .pull-right {
+  display: flex;
+  height: 35px;
+}
+.search-page {
+  width: 200px;
+  display: flex;
+}
+.search-page button, .search-page input {
+  border-radius: 0;
+}
+.search-page input {
+  height: 100%;
+}
 .funnel-btn {
   background: transparent url(../../../assets/funnel.png) no-repeat 0 50%;
   width: 20px;
@@ -27,5 +41,5 @@ thead th {
 }
 
 .funnel-header {
-  position: fixed;
+  position: absolute;
 }

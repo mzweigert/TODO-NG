@@ -20,6 +20,7 @@ export class TodoListComponent implements OnInit {
   private _currentPage: number = 1;
   private _pagesSize: number;
   private _hiddenInputs: Map<string, any> = new Map();
+  public showSetPageInput: boolean = false;
 
 
   constructor(@Inject('ITodoService') private todoService: ITodoService) {
@@ -49,7 +50,13 @@ export class TodoListComponent implements OnInit {
     this._paginatedTL = this._todoList.slice(this.getOffset(), this.getLimit());
   }
   setPage(index : any){
-    this._currentPage = index;
+    if(index > this._pagesSize){
+      this._currentPage = this._pagesSize;
+    } else if (index < 1 ) {
+      this._currentPage = 1;
+    } else {
+      this._currentPage = index;
+    }
     this.paginate();
   }
   prevPage(){
