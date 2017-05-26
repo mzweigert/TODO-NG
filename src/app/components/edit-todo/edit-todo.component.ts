@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy, Input } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 
@@ -20,6 +20,7 @@ export class EditTodoComponent implements OnInit, OnDestroy {
 
   private _todoForm: FormGroup;
   private _html :HTMLHeaders = HTMLHeaders.getHeaders('Add Todo');
+  @Input()
   private _todo : TODO;
 
   constructor(@Inject('ITodoService') private _todoService: ITodoService, private _route: ActivatedRoute,

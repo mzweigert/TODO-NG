@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 
 import { AppRoutes } from "../../consts/app-routes";
 import {ConflictResolverService} from "../../services/conflict-resolver.service";
+import { ActualDateComponent } from '../actual-date/actual-date.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ConflictResolverService} from "../../services/conflict-resolver.service"
     DetailsTodoComponent,
     EditTodoComponent,
     RemoveTodoComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ActualDateComponent
   ],
   imports: [
     AppRoutes,

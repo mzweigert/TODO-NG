@@ -118,4 +118,8 @@ export class TodoListComponent implements OnInit {
   get hiddenInputs(): Map<string, any>{
       return this._hiddenInputs;
       }
+
+  getDate(): Date {
+    return new Date();
+  }
 }

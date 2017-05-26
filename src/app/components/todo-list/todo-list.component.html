@@ -2,6 +2,7 @@
 <h1>
   {{html.title}}
 </h1>
+<app-actual-date [dateTime]="getDate()"></app-actual-date>
 <button type="button" class="btn btn-success btn-lg" [routerLink]="['/add']">{{html.btnAddTitle}}</button>
 <div class="static-height">
   <table class="table table-bordered">
